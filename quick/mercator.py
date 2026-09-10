@@ -7,7 +7,7 @@ from scipy.ndimage import gaussian_filter
 def generate_waveform(o, soccfg):
     g = o["gs"][-1]
     f_fabric = soccfg["gens"][g]["f_fabric"]
-    samps_per_clk = soccfg["gens"][g]["samps_per_clk"]
+    samps_per_clk = soccfg["gens"][g].get("samps_per_clk", 1)
     l = int((0 if o["length"] is None else o["length"]) * f_fabric) * samps_per_clk
     σ = o["sigma"] * samps_per_clk * f_fabric # keep float!
     if o["style"] == "const":
